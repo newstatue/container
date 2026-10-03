@@ -8,14 +8,14 @@ upload_source_maps = true
 enabled = true
 
 [[containers]]
-class_name = "api"
-image = "./Dockerfile"
+class_name = "ApiContainer"
+image = "./containers/api/Dockerfile"
 max_instances = 10
 
 [[durable_objects.bindings]]
-class_name = "MyContainer"
-name = "MY_CONTAINER"
+name = "API_CONTAINER"
+class_name = "ApiContainer"
 
 [[migrations]]
 tag = "v1"
-new_sqlite_classes = ["MyContainer"]
+new_sqlite_classes = ["ApiContainer"]
