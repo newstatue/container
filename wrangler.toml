@@ -1,4 +1,4 @@
-name = "api"
+name = "container"
 main = "src/index.ts"
 compatibility_date = "2025-10-08"
 compatibility_flags = ["nodejs_compat"]
@@ -10,6 +10,7 @@ enabled = true
 [[containers]]
 class_name = "ApiContainer"
 image = "./containers/api/Dockerfile"
+image_build_context = "."
 max_instances = 10
 
 [[durable_objects.bindings]]
