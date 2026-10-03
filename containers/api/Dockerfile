@@ -1,19 +1,21 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.24-alpine AS build
+FROM golang:1.27-alpine AS build
 
 # Set destination for COPY
 WORKDIR /app
 
 # Download any Go modules
-COPY container_src/go.mod ./
+COPY container_src/go.mod container_src/go.sum ./
 RUN go mod download
 
 # Copy container source code
-COPY container_src/*.go ./
+COPY container_src ./
 
 # Build
-RUN CGO_ENABLED=0 GOOS=linux go build -o /server
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+        go build -trimpath -ldflags="-s -w" \
+        -o /server ./cmd/api
 
 FROM scratch
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
