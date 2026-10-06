@@ -201,3 +201,5 @@ dist
 
 ### Idea ###
 .idea
+
+/internal/builder/template/starlight/

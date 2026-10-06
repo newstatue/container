@@ -5,3 +5,9 @@ node = "24"
 
 [env]
 GOPROXY = "https://goproxy.cn,direct"
+
+[bootstrap.repos]
+"./container_src/internal/builder/template/starlight" = {
+    url = "https://github.com/newstatue/starlight.git",
+    ref = "main"
+}
